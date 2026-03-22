@@ -7,39 +7,84 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#09090f;--bg2:#0e0e18;--bg3:#131320;--card:#171724;--card2:#1b1b29;
-  --border:#22223a;--accent:#5865f2;--accent2:#7289da;--cyan:#00d4ff;
+  --bg:#04060f;--bg2:#06080e;--bg3:#090b16;--card:#0c0e1c;--card2:#0f1120;
+  --border:#181a2e;--accent:#5865f2;--accent2:#7289da;--cyan:#00d4ff;
   --green:#23d18b;--purple:#8b5cf6;--text:#e8e8f2;--muted:#565678;--danger:#ed4245;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;}
+body{background:#04060f;color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;}
 
 /* ── PAGES ── */
 .page{display:none;}
 .page.active{display:block;}
 
 /* ── BACKGROUNDS ── */
-.grid-bg{
-  position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:
-    linear-gradient(rgba(88,101,242,0.032) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(88,101,242,0.032) 1px,transparent 1px);
-  background-size:60px 60px;
+canvas[id^="starsCanvas"]{position:fixed;inset:0;z-index:0;pointer-events:none;display:block;}
+.grid-bg{display:none;}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform,opacity;}
+
+/* Deep-space multi-color nebula orbs */
+.orb1{
+  width:900px;height:700px;
+  background:radial-gradient(ellipse at 40% 50%,rgba(15,35,200,0.3) 0%,rgba(8,18,140,0.14) 45%,transparent 72%);
+  top:-250px;left:-200px;filter:blur(80px);
+  animation:neb1 20s ease-in-out infinite alternate;
 }
-.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;animation:orbFloat 8s ease-in-out infinite alternate;}
-.orb1{width:600px;height:600px;background:rgba(88,101,242,0.1);top:-160px;right:-100px;animation-delay:0s;}
-.orb2{width:450px;height:450px;background:rgba(0,212,255,0.06);bottom:-130px;left:-80px;animation-delay:-3s;}
-.orb3{width:320px;height:320px;background:rgba(139,92,246,0.06);top:45%;left:35%;animation-delay:-5s;}
-@keyframes orbFloat{from{transform:translate(0,0);}to{transform:translate(20px,30px);}}
+.orb2{
+  width:750px;height:600px;
+  background:radial-gradient(ellipse at 60% 40%,rgba(0,150,230,0.22) 0%,rgba(0,70,190,0.1) 50%,transparent 72%);
+  top:-80px;right:-150px;filter:blur(90px);
+  animation:neb2 25s ease-in-out infinite alternate;
+}
+.orb3{
+  width:650px;height:550px;
+  background:radial-gradient(ellipse at 50% 60%,rgba(110,15,200,0.24) 0%,rgba(65,8,150,0.12) 50%,transparent 72%);
+  bottom:-120px;left:3%;filter:blur(100px);
+  animation:neb3 28s ease-in-out infinite alternate;
+}
+.orb4{
+  width:550px;height:450px;
+  background:radial-gradient(ellipse at 50% 50%,rgba(0,200,180,0.13) 0%,rgba(0,100,140,0.07) 50%,transparent 72%);
+  bottom:0%;right:-50px;filter:blur(85px);
+  animation:neb4 22s ease-in-out infinite alternate;
+}
+.orb5{
+  width:420px;height:380px;
+  background:radial-gradient(ellipse at 50% 50%,rgba(200,50,240,0.16) 0%,rgba(120,20,180,0.08) 50%,transparent 72%);
+  top:35%;left:35%;filter:blur(75px);
+  animation:neb5 17s ease-in-out infinite alternate;
+}
+/* Aurora band */
+.aurora{
+  position:fixed;z-index:0;pointer-events:none;top:0;left:0;
+  width:100%;height:60%;
+  background:linear-gradient(160deg,
+    rgba(0,60,200,0.05) 0%,
+    rgba(80,0,200,0.07) 25%,
+    rgba(0,160,240,0.05) 55%,
+    rgba(100,0,180,0.04) 80%,
+    transparent 100%
+  );
+  filter:blur(40px);
+  animation:auroraPulse 14s ease-in-out infinite alternate;
+  mix-blend-mode:screen;
+}
+@keyframes neb1{0%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(30px,20px) scale(1.06);}100%{transform:translate(50px,35px) scale(1.12) rotate(3deg);}}
+@keyframes neb2{0%{transform:translate(0,0) scale(1);}50%{transform:translate(-25px,15px) scale(1.05);}100%{transform:translate(-45px,28px) scale(1.1);}}
+@keyframes neb3{0%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(18px,-30px) scale(1.08);}100%{transform:translate(30px,-50px) scale(1.14) rotate(-4deg);}}
+@keyframes neb4{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-30px,40px) scale(1.08);}}
+@keyframes neb5{0%{transform:translate(0,0) scale(1);opacity:.65;}50%{transform:translate(20px,-15px) scale(1.1);}100%{transform:translate(35px,-25px) scale(1.18);opacity:1;}}
+@keyframes auroraPulse{0%{opacity:.5;transform:scaleY(1) skewX(0deg);}50%{opacity:.85;transform:scaleY(1.15) skewX(-1deg);}100%{opacity:.7;transform:scaleY(1.3) skewX(1deg);}}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,212,255,.5);}50%{opacity:.5;box-shadow:0 0 0 4px rgba(0,212,255,0);}}
 
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:300;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 56px;height:58px;
-  background:rgba(9,9,15,0.86);backdrop-filter:blur(22px);
-  border-bottom:1px solid rgba(255,255,255,0.04);
+  background:rgba(4,6,15,0.72);backdrop-filter:blur(28px);
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1rem;color:var(--text);cursor:pointer;}
 .logo-img{width:26px;height:26px;border-radius:6px;object-fit:cover;}
@@ -139,10 +184,10 @@ nav{
 /* ── FEATURES ── */
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .feat-card{
-  background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);
-  border-radius:14px;padding:26px;transition:all .28s;
+  background:rgba(10,12,24,0.5);border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;padding:26px;transition:all .28s;backdrop-filter:blur(10px);
 }
-.feat-card:hover{border-color:rgba(88,101,242,.4);transform:translateY(-5px);background:rgba(88,101,242,.04);}
+.feat-card:hover{border-color:rgba(88,101,242,.5);transform:translateY(-5px);background:rgba(88,101,242,.07);box-shadow:0 10px 40px rgba(88,101,242,.14);}
 .feat-ico{margin-bottom:14px;}
 .feat-card h3{font-weight:700;margin-bottom:7px;font-size:.92rem;}
 .feat-card p{color:var(--muted);font-size:.8rem;line-height:1.7;font-weight:500;}
@@ -150,11 +195,11 @@ nav{
 /* ── PRICING ── */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
 .price-card{
-  background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);
-  border-radius:16px;padding:28px;position:relative;transition:all .25s;
+  background:rgba(10,12,24,0.5);border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;padding:28px;position:relative;transition:all .25s;backdrop-filter:blur(10px);
 }
-.price-card.feat{border-color:rgba(88,101,242,.5);background:rgba(88,101,242,.04);}
-.price-card:hover{transform:translateY(-4px);}
+.price-card.feat{border-color:rgba(88,101,242,.55);background:rgba(30,30,80,0.35);}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,0,0,.4);}
 .price-name{font-weight:800;font-size:1rem;margin-bottom:2px;}
 .price-val{font-size:1.7rem;font-weight:800;margin:8px 0 2px;display:flex;align-items:center;gap:7px;}
 .price-val small{font-size:.78rem;color:var(--muted);font-weight:500;}
@@ -174,11 +219,11 @@ nav{
 .doc-hero h1{font-size:2.6rem;font-weight:800;letter-spacing:-2px;margin-bottom:12px;}
 .doc-hero p{color:var(--muted);line-height:1.8;font-size:.95rem;margin-bottom:36px;}
 .doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px;}
-.doc-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:22px;transition:all .2s;cursor:pointer;}
+.doc-card{background:rgba(10,12,24,0.5);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:22px;transition:all .2s;cursor:pointer;backdrop-filter:blur(8px);}
 .doc-card:hover{border-color:rgba(88,101,242,.4);transform:translateY(-3px);}
 .doc-card h3{font-weight:700;font-size:.9rem;margin-bottom:6px;margin-top:10px;}
 .doc-card p{color:var(--muted);font-size:.78rem;line-height:1.6;}
-.code-block{background:var(--bg3);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:18px 20px;font-family:'Space Mono',monospace;font-size:.76rem;color:var(--green);line-height:1.8;margin-bottom:20px;}
+.code-block{background:rgba(8,10,20,0.7);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:18px 20px;font-family:'Space Mono',monospace;font-size:.76rem;color:var(--green);line-height:1.8;margin-bottom:20px;}
 .code-block .c-c{color:var(--muted);}
 .code-block .c-k{color:#c792ea;}
 .code-block .c-s{color:#c3e88d;}
@@ -221,9 +266,10 @@ footer .footer-links a:hover{color:var(--text);}
 #dashboard{display:none;}
 #dashboard.active{display:flex;min-height:100vh;}
 .sidebar{
-  width:212px;background:rgba(14,14,24,0.98);border-right:1px solid rgba(255,255,255,0.05);
+  width:212px;background:rgba(6,8,14,0.88);border-right:1px solid rgba(255,255,255,0.05);
   display:flex;flex-direction:column;padding:18px 0;
   position:fixed;top:0;bottom:0;left:0;z-index:100;
+  backdrop-filter:blur(20px);
 }
 .sb-logo{padding:0 16px 18px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:9px;font-weight:800;font-size:.9rem;cursor:pointer;}
 .sb-logo img{width:26px;height:26px;border-radius:6px;}
@@ -247,9 +293,9 @@ footer .footer-links a:hover{color:var(--text);}
 /* ── DASH MAIN ── */
 .dash-main{margin-left:212px;flex:1;display:flex;flex-direction:column;min-height:100vh;}
 .dash-top{
-  background:rgba(9,9,15,.94);border-bottom:1px solid rgba(255,255,255,0.04);
+  background:rgba(4,6,15,0.75);border-bottom:1px solid rgba(255,255,255,0.04);
   padding:0 26px;height:50px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:60;backdrop-filter:blur(20px);
 }
 .dt-title{font-weight:800;font-size:.9rem;}
 .dt-right{display:flex;align-items:center;gap:10px;}
@@ -262,8 +308,8 @@ footer .footer-links a:hover{color:var(--text);}
 /* ── STAT CARDS ── */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
 .sc{
-  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;padding:20px;display:flex;align-items:center;gap:12px;
+  background:rgba(10,12,24,0.55);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:20px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(8px);
 }
 .sc-ico{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .i-blue{background:rgba(88,101,242,.14);}.i-gold{background:rgba(251,191,36,.1);}.i-green{background:rgba(35,209,139,.1);}.i-purple{background:rgba(139,92,246,.12);}
@@ -281,7 +327,7 @@ footer .footer-links a:hover{color:var(--text);}
 .svc-btn p{color:var(--muted);font-size:.7rem;}
 
 /* ── LISTS ── */
-.list-block{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;}
+.list-block{background:rgba(10,12,24,0.5);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;backdrop-filter:blur(8px);}
 .list-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s;}
 .list-row:last-child{border-bottom:none;}
 .list-row:hover{background:rgba(255,255,255,.02);}
@@ -377,19 +423,19 @@ textarea.fc{resize:vertical;min-height:88px;}
 .dash-home-title{font-size:2rem;font-weight:800;letter-spacing:-1px;}
 .dash-home-sub{color:var(--muted);font-size:.8rem;margin-top:3px;}
 .stats-row-v2{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
-.sc-v2{background:#111118;border:1px solid #1e1e2e;border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:border-color .2s;}
-.sc-v2:hover{border-color:rgba(255,255,255,.1);}
+.sc-v2{background:rgba(10,12,24,0.55);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:border-color .2s;backdrop-filter:blur(8px);}
+.sc-v2:hover{border-color:rgba(255,255,255,.12);}
 .sc-v2 .sc-ico{width:38px;height:38px;border-radius:9px;}
 .sc-v2 .sc-num{font-size:1.5rem;font-weight:800;line-height:1;}
 .sc-v2 .sc-lbl{color:var(--muted);font-size:.72rem;margin-top:2px;}
 .svc-grid-v2{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
-.svc-card-v2{background:#111118;border:1px solid #1e1e2e;border-radius:11px;padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;}
-.svc-card-v2:hover{border-color:rgba(255,255,255,.1);background:#151520;}
+.svc-card-v2{background:rgba(10,12,24,0.5);border:1px solid rgba(255,255,255,0.07);border-radius:11px;padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;backdrop-filter:blur(6px);}
+.svc-card-v2:hover{border-color:rgba(255,255,255,.12);background:rgba(30,30,60,.45);}
 .svc-card-v2 .sc-ico{width:34px;height:34px;border-radius:8px;flex-shrink:0;}
 .svc-card-v2 h4{font-weight:700;font-size:.82rem;margin-bottom:1px;}
 .svc-card-v2 p{color:var(--muted);font-size:.7rem;}
-.block-v2{background:#111118;border:1px solid #1e1e2e;border-radius:12px;overflow:hidden;margin-bottom:16px;}
-.block-v2-hdr{display:flex;align-items:center;gap:8px;padding:14px 18px;font-weight:700;font-size:.82rem;border-bottom:1px solid #1e1e2e;}
+.block-v2{background:rgba(10,12,24,0.5);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;margin-bottom:16px;backdrop-filter:blur(8px);}
+.block-v2-hdr{display:flex;align-items:center;gap:8px;padding:14px 18px;font-weight:700;font-size:.82rem;border-bottom:1px solid rgba(255,255,255,.05);}
 .activity-row{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.03);}
 .activity-row:last-child{border-bottom:none;}
 
@@ -464,8 +510,10 @@ textarea.fc{resize:vertical;min-height:88px;}
 
 <!-- ████ LANDING ████ -->
 <div id="landing" class="page active">
-<div class="grid-bg"></div>
+<canvas id="starsCanvas"></canvas>
+<div class="aurora"></div>
 <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+<div class="orb orb4"></div><div class="orb orb5"></div>
 
 <nav>
   <div class="logo" onclick="showPage('landing')">
@@ -628,7 +676,7 @@ textarea.fc{resize:vertical;min-height:88px;}
 
 <!-- ████ DOCUMENTATION ████ -->
 <div id="doc" class="page">
-<div class="grid-bg"></div><div class="orb orb1"></div><div class="orb orb2"></div>
+<canvas id="starsCanvas2"></canvas><div class="orb orb1"></div><div class="orb orb2"></div>
 <nav>
   <div class="logo" onclick="showPage('landing')">
     <img class="logo-img" src="https://cdn.discordapp.com/icons/1452963098284785765/4255d99dd972ab407c31044fe9a899b0.png?size=64" alt="">
@@ -702,7 +750,7 @@ textarea.fc{resize:vertical;min-height:88px;}
 
 <!-- ████ À PROPOS ████ -->
 <div id="about" class="page">
-<div class="grid-bg"></div><div class="orb orb1"></div><div class="orb orb2"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div>
 <nav>
   <div class="logo" onclick="showPage('landing')">
     <img class="logo-img" src="https://cdn.discordapp.com/icons/1452963098284785765/4255d99dd972ab407c31044fe9a899b0.png?size=64" alt="">
@@ -767,6 +815,11 @@ textarea.fc{resize:vertical;min-height:88px;}
 
 <!-- ████ DASHBOARD ████ -->
 <div id="dashboard">
+  <canvas id="starsCanvas3" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+  <div class="aurora" style="position:fixed;"></div>
+  <div class="orb orb1" style="position:fixed;"></div>
+  <div class="orb orb2" style="position:fixed;"></div>
+  <div class="orb orb3" style="position:fixed;"></div>
   <div class="sidebar">
     <div class="sb-logo" onclick="showPage('landing')">
       <img src="https://cdn.discordapp.com/icons/1452963098284785765/4255d99dd972ab407c31044fe9a899b0.png?size=64" alt="">
@@ -1153,24 +1206,116 @@ textarea.fc{resize:vertical;min-height:88px;}
 
       <!-- STAFF -->
       <div class="dp" id="dp-staff">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <div><div style="font-size:1.3rem;font-weight:800;">Panel Staff</div><div style="color:var(--muted);font-size:.78rem;">Gestion des commandes et tickets</div></div>
+          <div><div style="font-size:1.3rem;font-weight:800;">Panel Staff</div><div style="color:var(--muted);font-size:.78rem;">Gestion des commandes, tickets et facturation</div></div>
         </div>
-        <div class="staff-actions">
-          <div class="sa" onclick="loadStkts()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><h4>Tickets</h4><p>Prendre en charge les tickets ouverts</p></div>
-          <div class="sa" onclick="loadSords()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><h4>Commandes</h4><p>Activer ou annuler les commandes</p></div>
+        <!-- Staff tabs -->
+        <div class="sup-tabs" style="margin-bottom:20px;">
+          <div class="sup-tab active" id="stab-tickets" onclick="staffTab('tickets',this)">Tickets</div>
+          <div class="sup-tab" id="stab-orders" onclick="staffTab('orders',this)">Commandes</div>
+          <div class="sup-tab" id="stab-invoice" onclick="staffTab('invoice',this)">
+            <span style="display:flex;align-items:center;gap:5px;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Générer une facture
+            </span>
+          </div>
         </div>
-        <div class="s-h"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Tickets ouverts</div>
-        <div id="staffTkts" class="list-block" style="margin-bottom:20px;"><div class="empty" style="padding:26px"><h3>Aucun ticket</h3><p>Cliquez sur "Tickets" pour charger</p></div></div>
-        <div class="s-h"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Toutes les commandes</div>
-        <div class="list-block" style="overflow-x:auto;">
-          <table class="tbl"><thead><tr><th>Utilisateur</th><th>Service</th><th>Type</th><th>Plan</th><th>Statut</th><th>Date</th><th>Action</th></tr></thead>
-          <tbody id="staffOrds"><tr><td colspan="7" style="text-align:center;padding:26px;color:var(--muted);">Cliquez sur "Commandes" pour charger</td></tr></tbody>
-          </table>
+
+        <!-- Tickets tab -->
+        <div id="stp-tickets" class="sup-panel active">
+          <div id="staffTkts" class="list-block"><div class="empty" style="padding:26px"><h3>Aucun ticket</h3><p>Cliquez sur l'onglet Tickets pour charger</p></div></div>
+        </div>
+
+        <!-- Orders tab -->
+        <div id="stp-orders" class="sup-panel">
+          <div class="list-block" style="overflow-x:auto;">
+            <table class="tbl"><thead><tr><th>Utilisateur</th><th>Service</th><th>Type</th><th>Plan</th><th>Statut</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="staffOrds"><tr><td colspan="7" style="text-align:center;padding:26px;color:var(--muted);">Cliquez sur l'onglet Commandes pour charger</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Invoice tab -->
+        <div id="stp-invoice" class="sup-panel">
+          <div style="max-width:640px;">
+            <div class="o-form">
+              <div style="font-weight:700;font-size:.86rem;margin-bottom:18px;display:flex;align-items:center;gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Générer une facture PDF
+              </div>
+              <div class="fc-row">
+                <div class="fg"><label>ID Facture *</label><input type="text" class="fc" id="invId" placeholder="FAC-2025-001"></div>
+                <div class="fg"><label>Nom du client *</label><input type="text" class="fc" id="invClient" placeholder="Ex: jean_off"></div>
+              </div>
+              <div class="fg"><label>Description / Prestation *</label><input type="text" class="fc" id="invDesc" placeholder="Ex: Hébergement Bot Discord — Plan Pro"></div>
+              <div class="fc-row">
+                <div class="fg"><label>Montant HT (€) *</label><input type="number" class="fc" id="invHT" placeholder="0.00" step="0.01" min="0"></div>
+                <div class="fg"><label>TVA (%)</label><input type="number" class="fc" id="invTVA" placeholder="20" value="20" min="0" max="100"></div>
+              </div>
+              <div class="fc-row">
+                <div class="fg"><label>Statut</label>
+                  <select class="fc" id="invStatus">
+                    <option value="En attente">En attente</option>
+                    <option value="Payé">Payé</option>
+                    <option value="Annulé">Annulé</option>
+                    <option value="Remboursé">Remboursé</option>
+                  </select>
+                </div>
+                <div class="fg"><label>Échéance</label><input type="date" class="fc" id="invDue"></div>
+              </div>
+              <div class="fg"><label>Notes</label><textarea class="fc" id="invNotes" placeholder="Notes complémentaires..." style="min-height:70px;"></textarea></div>
+              <!-- Preview totals -->
+              <div style="background:#0a0b14;border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:flex;gap:24px;font-family:'Space Mono',monospace;font-size:.78rem;">
+                <div><span style="color:var(--muted);">HT :</span> <span id="prevHT">0.00 €</span></div>
+                <div><span style="color:var(--muted);">TVA :</span> <span id="prevTVA">0.00 €</span></div>
+                <div><span style="color:var(--green);font-weight:700;">TTC :</span> <span id="prevTTC" style="color:var(--green);font-weight:700;">0.00 €</span></div>
+              </div>
+              <button class="btn-s" onclick="generateInvoicePDF()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Télécharger PDF
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Staff Edit Order Modal -->
+<div class="edit-modal-ov" id="staffEditModal" onclick="if(event.target===this)closeStaffEdit()">
+  <div class="edit-modal">
+    <button class="em-x" onclick="closeStaffEdit()">✕</button>
+    <h3 style="margin-bottom:18px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Modifier (Staff)
+    </h3>
+    <input type="hidden" id="staffEditId">
+    <div class="fg"><label>Nom du service</label><input type="text" class="fc" id="staffEditName"></div>
+    <div class="fg"><label>Statut</label>
+      <select class="fc" id="staffEditStatus">
+        <option value="pending">En attente</option>
+        <option value="active">Actif</option>
+        <option value="cancelled">Annulé</option>
+        <option value="completed">Terminé</option>
+      </select>
+    </div>
+    <div class="fg"><label>Plan</label>
+      <select class="fc" id="staffEditPlan">
+        <option value="0">Gratuit (Starter)</option>
+        <option value="1">1 Boost (Pro)</option>
+        <option value="2">2 Boosts (Enterprise)</option>
+      </select>
+    </div>
+    <div class="fg"><label>Notes</label><textarea class="fc" id="staffEditNotes" placeholder="Notes..."></textarea></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="btn-s" onclick="saveStaffEdit()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg>
+        Sauvegarder
+      </button>
+      <button class="btn-can" onclick="closeStaffEdit()">Annuler</button>
     </div>
   </div>
 </div>
@@ -1434,6 +1579,9 @@ function renderMyTickets(){
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <span class="pill ${pclass[t.status]||'p-yellow'}">${plabel[t.status]||t.status}</span>
+        <button class="btn-sm bsr" onclick="deleteMyTk(event,'${t.id}')" title="Supprimer définitivement" style="padding:4px 8px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+        </button>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
     </div>
@@ -1636,6 +1784,15 @@ async function submitTicket(){
     await fetchData();
   }catch(e){console.error(e);showToast('❌ Erreur','err');}
 }
+async function deleteMyTk(evt,id){
+  evt.stopPropagation();
+  if(!confirm('Supprimer définitivement ce ticket ?'))return;
+  try{
+    await sb('ticket_messages?ticket_id=eq.'+id,'DELETE');
+    await sb('tickets?id=eq.'+id,'DELETE');
+    showToast('🗑️ Ticket supprimé');await fetchData();
+  }catch{showToast('❌ Erreur','err');}
+}
 function clearTicket(){
   ['tkSub','tkMsg'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('tkSvc').value='';
@@ -1643,41 +1800,85 @@ function clearTicket(){
   document.getElementById('tkPrio').value='Moyenne';
 }
 
-// ═══════ STAFF ═══════
+// ═══════ STAFF TABS ═══════
+function staffTab(tab,el){
+  document.querySelectorAll('#dp-staff .sup-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sup-panel[id^="stp-"]').forEach(p=>p.classList.remove('active'));
+  if(el)el.classList.add('active');
+  const pan=document.getElementById('stp-'+tab);if(pan)pan.classList.add('active');
+  if(tab==='tickets')loadStkts();
+  if(tab==='orders')loadSords();
+}
+
+// ═══════ STAFF TICKETS ═══════
 async function loadStkts(){
   try{
-    const tks=await sb('tickets?status=eq.open&select=*,users(username)')||[];
+    const tks=await sb('tickets?select=*,users(username)')||[];
     const c=document.getElementById('staffTkts');
-    if(!tks.length){c.innerHTML='<div class="empty" style="padding:24px"><h3>Aucun ticket</h3><p>Aucun ticket ouvert</p></div>';return;}
+    if(!tks.length){c.innerHTML='<div class="empty" style="padding:24px"><h3>Aucun ticket</h3><p>Aucun ticket trouvé</p></div>';return;}
+    const pclass={open:'p-green',in_progress:'p-blue',resolved:'p-purple',closed:'p-red'};
+    const plabel={open:'Ouvert',in_progress:'En cours',resolved:'Résolu',closed:'Fermé'};
     c.innerHTML=tks.map(t=>`
       <div class="list-row">
         <div class="lr-left">
           <div class="lr-ico i-bot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div>
             <div class="lr-name">${t.subject}</div>
-            <div class="lr-sub">${t.users?.username||'?'} · <span style="color:var(--accent2)">${t.category}</span> · <span style="color:${t.priority==='Urgente'||t.priority==='Haute'?'#f87171':'#fbbf24'}">${t.priority}</span></div>
+            <div class="lr-sub">${t.users?.username||'?'} · <span style="color:var(--accent2)">${t.category}</span> · <span style="color:${t.priority==='Urgente'||t.priority==='Haute'?'#f87171':'#fbbf24'}">${t.priority}</span> · <span class="pill ${pclass[t.status]||'p-yellow'}">${plabel[t.status]||t.status}</span></div>
           </div>
         </div>
-        <div style="display:flex;gap:6px;">
+        <div style="display:flex;gap:5px;flex-shrink:0;">
           <button class="btn-sm bsg" onclick="resolveTk('${t.id}')">Résoudre</button>
-          <button class="btn-sm bsr" onclick="closeTk('${t.id}')">Fermer</button>
+          <button class="btn-sm" style="background:rgba(88,101,242,.14);color:var(--accent2);border:1px solid rgba(88,101,242,.25);" onclick="closeTk('${t.id}')">Fermer</button>
+          <button class="btn-sm bsr" onclick="deleteTk('${t.id}')" title="Supprimer définitivement">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+          </button>
         </div>
       </div>
     `).join('');
   }catch(e){console.error(e);}
 }
 
+// ═══════ STAFF ORDERS ═══════
 async function loadSords(){
   try{
-    const ords=await sb('orders?select=*,users(username)')||[];
+    const ords=await sb('orders?order=created_at.desc&select=*,users(username)')||[];
+    window._staffOrdsCache=ords;
     const tb=document.getElementById('staffOrds');
     if(!ords.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">Aucune commande</td></tr>';return;}
-    tb.innerHTML=ords.map(o=>`<tr><td>${o.users?.username||'—'}</td><td style="font-weight:600;">${o.description||'—'}</td><td style="color:var(--muted);">${TLB[o.service_type]||o.service_type}</td><td>${o.amount===0?'Gratuit':o.amount<=1?'1 Boost':'2 Boosts'}</td><td><span class="pill ${o.status==='active'?'p-green':o.status==='pending'?'p-yellow':'p-red'}">${o.status}</span></td><td style="color:var(--muted);font-size:.72rem;">${new Date(o.created_at).toLocaleDateString('fr-FR')}</td><td>${o.status==='pending'?`<button class="btn-sm bsg" onclick="activOrd('${o.id}')">Activer</button>`:`<button class="btn-sm bsr" onclick="cancelOrd('${o.id}')">Annuler</button>`}</td></tr>`).join('');
+    tb.innerHTML=ords.map(o=>`<tr>
+      <td>${o.users?.username||'—'}</td>
+      <td style="font-weight:600;">${o.description||'—'}</td>
+      <td style="color:var(--muted);">${TLB[o.service_type]||o.service_type}</td>
+      <td>${o.amount===0?'Gratuit':o.amount<=1?'1 Boost':'2 Boosts'}</td>
+      <td><span class="pill ${o.status==='active'?'p-green':o.status==='pending'?'p-yellow':'p-red'}">${o.status}</span></td>
+      <td style="color:var(--muted);font-size:.72rem;">${new Date(o.created_at).toLocaleDateString('fr-FR')}</td>
+      <td>
+        <div style="display:flex;gap:4px;">
+          ${o.status==='pending'?`<button class="btn-sm bsg" onclick="activOrd('${o.id}')">Activer</button>`:''}
+          <button class="btn-sm" style="background:rgba(88,101,242,.12);color:var(--accent2);border:1px solid rgba(88,101,242,.2);display:flex;align-items:center;gap:3px;" onclick="openStaffEdit('${o.id}')">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Modifier
+          </button>
+          <button class="btn-sm bsr" onclick="deleteOrd('${o.id}')" title="Supprimer">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+          </button>
+        </div>
+      </td>
+    </tr>`).join('');
   }catch(e){console.error(e);}
 }
 
 async function resolveTk(id){try{await sb('tickets?id=eq.'+id,'PATCH',{status:'resolved'});showToast('✅ Ticket résolu');loadStkts();}catch{showToast('❌ Erreur','err');}}
 async function closeTk(id){try{await sb('tickets?id=eq.'+id,'PATCH',{status:'closed'});showToast('Ticket fermé');loadStkts();}catch{showToast('❌ Erreur','err');}}
+async function deleteTk(id){
+  if(!confirm('Supprimer définitivement ce ticket ?'))return;
+  try{
+    await sb('ticket_messages?ticket_id=eq.'+id,'DELETE');
+    await sb('tickets?id=eq.'+id,'DELETE');
+    showToast('🗑️ Ticket supprimé');loadStkts();
+  }catch{showToast('❌ Erreur','err');}
+}
 async function activOrd(id){
   try{
     await sb('orders?id=eq.'+id,'PATCH',{status:'active'});
@@ -1687,6 +1888,152 @@ async function activOrd(id){
   }catch{showToast('❌ Erreur','err');}
 }
 async function cancelOrd(id){try{await sb('orders?id=eq.'+id,'PATCH',{status:'cancelled'});showToast('Commande annulée');loadSords();}catch{showToast('❌ Erreur','err');}}
+async function deleteOrd(id){
+  if(!confirm('Supprimer définitivement cette commande ?'))return;
+  try{
+    await sb('orders?id=eq.'+id,'DELETE');
+    showToast('🗑️ Commande supprimée');loadSords();
+  }catch{showToast('❌ Erreur','err');}
+}
+
+// Staff edit order
+let staffEditOrders=[];
+function openStaffEdit(id){
+  // find in already loaded table rows via ORDS global or re-fetch
+  const allOrds=window._staffOrdsCache||[];
+  const o=allOrds.find(x=>x.id===id);
+  if(!o)return;
+  document.getElementById('staffEditId').value=id;
+  document.getElementById('staffEditName').value=o.description||'';
+  document.getElementById('staffEditStatus').value=o.status||'pending';
+  document.getElementById('staffEditPlan').value=String(o.amount||0);
+  document.getElementById('staffEditNotes').value=o.notes||'';
+  document.getElementById('staffEditModal').classList.add('open');
+}
+function closeStaffEdit(){document.getElementById('staffEditModal').classList.remove('open');}
+async function saveStaffEdit(){
+  const id=document.getElementById('staffEditId').value;
+  const name=document.getElementById('staffEditName').value.trim();
+  const status=document.getElementById('staffEditStatus').value;
+  const amount=parseInt(document.getElementById('staffEditPlan').value);
+  const notes=document.getElementById('staffEditNotes').value;
+  if(!name)return showToast('❌ Entrez un nom','err');
+  try{
+    await sb('orders?id=eq.'+id,'PATCH',{description:name,status,amount,notes});
+    showToast('✅ Commande modifiée !');closeStaffEdit();loadSords();
+  }catch(e){console.error(e);showToast('❌ Erreur','err');}
+}
+
+// ═══════ INVOICE PDF ═══════
+// Live preview calc
+function updateInvPreview(){
+  const ht=parseFloat(document.getElementById('invHT')?.value)||0;
+  const tva=parseFloat(document.getElementById('invTVA')?.value)||0;
+  const tvaAmt=ht*(tva/100);
+  const ttc=ht+tvaAmt;
+  const fmt=v=>v.toFixed(2)+' €';
+  document.getElementById('prevHT').textContent=fmt(ht);
+  document.getElementById('prevTVA').textContent=fmt(tvaAmt);
+  document.getElementById('prevTTC').textContent=fmt(ttc);
+}
+
+function generateInvoicePDF(){
+  const id=document.getElementById('invId').value.trim();
+  const client=document.getElementById('invClient').value.trim();
+  const desc=document.getElementById('invDesc').value.trim();
+  const ht=parseFloat(document.getElementById('invHT').value)||0;
+  const tva=parseFloat(document.getElementById('invTVA').value)||0;
+  const status=document.getElementById('invStatus').value;
+  const due=document.getElementById('invDue').value;
+  const notes=document.getElementById('invNotes').value.trim();
+  if(!id||!client||!desc){return showToast('❌ Remplissez les champs obligatoires','err');}
+  const tvaAmt=ht*(tva/100);
+  const ttc=ht+tvaAmt;
+  const fmt=v=>v.toFixed(2);
+  const today=new Date().toLocaleDateString('fr-FR');
+  const dueStr=due?new Date(due).toLocaleDateString('fr-FR'):'—';
+  const statusColor=status==='Payé'?'#23d18b':status==='Annulé'||status==='Remboursé'?'#ed4245':'#fbbf24';
+
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#fff;color:#1a1a2e;padding:40px;}
+  .header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:24px;border-bottom:2px solid #e8e8f0;}
+  .logo-text{font-size:22px;font-weight:800;color:#5865f2;}
+  .logo-text span{color:#7289da;}
+  .inv-meta{text-align:right;}
+  .inv-id{font-size:1.5rem;font-weight:800;color:#1a1a2e;margin-bottom:4px;}
+  .inv-date{font-size:.82rem;color:#888;}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:36px;}
+  .info-block h4{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;margin-bottom:8px;}
+  .info-block p{font-size:.9rem;font-weight:600;color:#1a1a2e;}
+  .info-block p.sub{font-size:.78rem;font-weight:400;color:#666;margin-top:2px;}
+  table{width:100%;border-collapse:collapse;margin-bottom:24px;}
+  thead tr{background:#5865f2;color:#fff;}
+  thead th{padding:10px 14px;font-size:.78rem;font-weight:700;text-align:left;letter-spacing:.4px;}
+  tbody tr{border-bottom:1px solid #e8e8f0;}
+  tbody tr:hover{background:#f8f8ff;}
+  tbody td{padding:12px 14px;font-size:.85rem;}
+  .totals{margin-left:auto;width:260px;margin-bottom:24px;}
+  .tot-row{display:flex;justify-content:space-between;padding:7px 0;font-size:.85rem;border-bottom:1px solid #e8e8f0;}
+  .tot-row.final{font-weight:800;font-size:1rem;color:#5865f2;border-bottom:2px solid #5865f2;border-top:2px solid #5865f2;padding:10px 0;}
+  .status-badge{display:inline-block;padding:4px 14px;border-radius:100px;font-size:.75rem;font-weight:700;background:${status==='Payé'?'#dcfce7':status==='Annulé'?'#fee2e2':'#fef9c3'};color:${statusColor};}
+  .notes-box{background:#f8f8ff;border:1px solid #e8e8f0;border-radius:8px;padding:14px;font-size:.82rem;color:#444;line-height:1.6;}
+  .footer{margin-top:40px;padding-top:16px;border-top:1px solid #e8e8f0;font-size:.72rem;color:#aaa;text-align:center;}
+</style></head><body>
+<div class="header">
+  <div>
+    <div class="logo-text"><span>Dev</span> Center</div>
+    <div style="font-size:.78rem;color:#888;margin-top:4px;">Plateforme d'hébergement</div>
+  </div>
+  <div class="inv-meta">
+    <div class="inv-id">FACTURE ${id}</div>
+    <div class="inv-date">Émise le ${today}</div>
+    <div style="margin-top:6px;"><span class="status-badge">${status}</span></div>
+  </div>
+</div>
+<div class="info-grid">
+  <div class="info-block">
+    <h4>Émetteur</h4>
+    <p>Dev Center</p>
+    <p class="sub">contact@dev-center.fr</p>
+    <p class="sub">devcenter24.github.io/test</p>
+  </div>
+  <div class="info-block">
+    <h4>Client</h4>
+    <p>${client}</p>
+    <p class="sub">Échéance : ${dueStr}</p>
+  </div>
+</div>
+<table>
+  <thead><tr><th>#</th><th>Description / Prestation</th><th>Montant HT</th><th>TVA (${tva}%)</th><th>Total TTC</th></tr></thead>
+  <tbody>
+    <tr>
+      <td style="color:#888;">001</td>
+      <td style="font-weight:600;">${desc}</td>
+      <td>${fmt(ht)} €</td>
+      <td>${fmt(tvaAmt)} €</td>
+      <td style="font-weight:700;">${fmt(ttc)} €</td>
+    </tr>
+  </tbody>
+</table>
+<div class="totals">
+  <div class="tot-row"><span>Sous-total HT</span><span>${fmt(ht)} €</span></div>
+  <div class="tot-row"><span>TVA (${tva}%)</span><span>${fmt(tvaAmt)} €</span></div>
+  <div class="tot-row final"><span>TOTAL TTC</span><span>${fmt(ttc)} €</span></div>
+</div>
+${notes?`<div style="margin-bottom:16px;"><div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#888;margin-bottom:8px;">Notes</div><div class="notes-box">${notes}</div></div>`:''}
+<div class="footer">Dev Center — Facture générée automatiquement le ${today} — ${id}</div>
+</body></html>`;
+
+  const w=window.open('','_blank');
+  w.document.write(html);
+  w.document.close();
+  w.focus();
+  setTimeout(()=>{w.print();},400);
+}
+
+// (live preview handled in main DOMContentLoaded below)
 
 // ═══════ NAVIGATION ═══════
 const PTITLES={home:'Tableau de bord',order:'Commander un service',services:'Mes Services',orders:'Commandes',support:'Support',account:'Mon Compte',staff:'Panel Staff'};
@@ -1697,13 +2044,15 @@ function goP(p,el){
   const pan=document.getElementById('dp-'+p);if(pan)pan.classList.add('active');
   if(el)el.classList.add('active');
   document.getElementById('topTitle').textContent=PTITLES[p]||p;
-  if(p==='staff'){loadStkts();loadSords();}
+  if(p==='staff'){staffTab('tickets',document.getElementById('stab-tickets'));}
   if(p==='support'){supTab('tickets',document.querySelector('.sup-tab'));}
 }
 
 function supTab(tab,el){
-  document.querySelectorAll('.sup-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.sup-panel').forEach(p=>p.classList.remove('active'));
+  const sup=document.getElementById('dp-support');
+  if(!sup)return;
+  sup.querySelectorAll('.sup-tab').forEach(t=>t.classList.remove('active'));
+  sup.querySelectorAll('.sup-panel').forEach(p=>p.classList.remove('active'));
   if(el)el.classList.add('active');
   const pan=document.getElementById('sp-'+tab);if(pan)pan.classList.add('active');
   if(tab==='tickets')renderMyTickets();
@@ -1765,6 +2114,192 @@ window.addEventListener('DOMContentLoaded',async()=>{
     }
     await initDash();
   }
+});
+
+// ═══════ DYNAMIC SPACE CANVAS ═══════
+function initStars(canvasId){
+  const c=document.getElementById(canvasId);if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,stars=[],shooters=[],nebParts=[],hue=220;
+
+  // Star colors: white + tinted blues/purples/cyans
+  const starPalette=[
+    [255,255,255],[200,220,255],[220,200,255],[160,230,255],
+    [255,240,200],[200,255,230],[180,160,255]
+  ];
+
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=window.innerHeight;
+  }
+
+  // Stars — three depth layers
+  function mkStar(layer){
+    const [r,g,b]=starPalette[Math.floor(Math.random()*starPalette.length)];
+    const size=layer===0?Math.random()*.5+.1:layer===1?Math.random()*.9+.3:Math.random()*1.4+.5;
+    return{
+      x:Math.random()*W, y:Math.random()*H,
+      r:size, baseR:size,
+      a:Math.random()*.7+.1,
+      da:(Math.random()-.5)*(layer===2?.008:.005),
+      col:`${r},${g},${b}`,
+      layer,
+      // slow drift for parallax feel
+      vx:(Math.random()-.5)*(layer===0?.03:layer===1?.015:.005),
+      vy:(Math.random()-.5)*(layer===0?.02:layer===1?.01:.004),
+      // occasional pulse
+      pulse:Math.random()<.04,
+      pulseSpeed:Math.random()*.04+.02,
+      pulseAngle:Math.random()*Math.PI*2
+    };
+  }
+
+  function buildStars(){
+    stars=[
+      ...Array.from({length:120},()=>mkStar(0)), // tiny bg
+      ...Array.from({length:90},()=>mkStar(1)),  // mid
+      ...Array.from({length:50},()=>mkStar(2)),  // bright front
+    ];
+  }
+
+  // Nebula particles — large blurry soft blobs drifting
+  function mkNebPart(){
+    const hues=[[20,40,200],[0,140,230],[100,10,200],[200,50,240],[0,200,180]];
+    const [r,g,b]=hues[Math.floor(Math.random()*hues.length)];
+    return{
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*120+60,
+      a:Math.random()*.04+.01,
+      da:(Math.random()-.5)*.0002,
+      vx:(Math.random()-.5)*.06,
+      vy:(Math.random()-.5)*.04,
+      col:`${r},${g},${b}`
+    };
+  }
+
+  function buildNebula(){nebParts=Array.from({length:14},mkNebPart);}
+
+  // Shooting stars
+  function mkShooter(){
+    const angle=Math.random()*.4+.15; // mostly diagonal
+    const speed=Math.random()*5+6;
+    return{
+      x:Math.random()*W*.8,y:Math.random()*H*.4,
+      vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed,
+      len:Math.random()*100+60,
+      a:1, life:1,
+      col:['255,255,255','160,210,255','220,180,255'][Math.floor(Math.random()*3)]
+    };
+  }
+
+  let shooterTimer=0;
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Background deep gradient (very dark navy)
+    const bg=ctx.createRadialGradient(W*.5,H*.3,0,W*.5,H*.5,H);
+    bg.addColorStop(0,'rgba(8,12,40,0)');
+    bg.addColorStop(1,'rgba(2,4,14,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+    // Nebula soft blobs
+    nebParts.forEach(n=>{
+      n.x+=n.vx;n.y+=n.vy;
+      n.a+=n.da;
+      if(n.a<.008)n.da=Math.abs(n.da);
+      if(n.a>.06)n.da=-Math.abs(n.da);
+      if(n.x<-n.r||n.x>W+n.r){n.vx*=-1;}
+      if(n.y<-n.r||n.y>H+n.r){n.vy*=-1;}
+      const g2=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);
+      g2.addColorStop(0,`rgba(${n.col},${n.a})`);
+      g2.addColorStop(1,`rgba(${n.col},0)`);
+      ctx.fillStyle=g2;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();
+    });
+
+    // Stars
+    stars.forEach(s=>{
+      // Twinkle
+      s.a+=s.da;
+      if(s.a<.05)s.da=Math.abs(s.da);
+      if(s.a>(s.layer===2?.95:.75))s.da=-Math.abs(s.da);
+      // Drift
+      s.x+=s.vx;s.y+=s.vy;
+      if(s.x<0)s.x=W;if(s.x>W)s.x=0;
+      if(s.y<0)s.y=H;if(s.y>H)s.y=0;
+      // Pulse bright stars
+      let radius=s.r;
+      if(s.pulse){
+        s.pulseAngle+=s.pulseSpeed;
+        radius=s.baseR*(1+Math.sin(s.pulseAngle)*.35);
+      }
+      // Draw star
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,radius,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${s.col},${s.a})`;
+      ctx.fill();
+      // Glow on bright stars
+      if(s.layer===2&&s.a>.5){
+        const glow=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,radius*5);
+        glow.addColorStop(0,`rgba(${s.col},${s.a*.18})`);
+        glow.addColorStop(1,`rgba(${s.col},0)`);
+        ctx.fillStyle=glow;
+        ctx.beginPath();ctx.arc(s.x,s.y,radius*5,0,Math.PI*2);ctx.fill();
+      }
+      // Cross sparkle for very bright ones
+      if(s.pulse&&s.a>.7){
+        ctx.strokeStyle=`rgba(${s.col},${s.a*.25})`;
+        ctx.lineWidth=.5;
+        const rl=radius*4;
+        ctx.beginPath();ctx.moveTo(s.x-rl,s.y);ctx.lineTo(s.x+rl,s.y);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(s.x,s.y-rl);ctx.lineTo(s.x,s.y+rl);ctx.stroke();
+      }
+    });
+
+    // Shooting stars
+    shooterTimer++;
+    if(shooterTimer>280&&shooters.length<3){
+      shooters.push(mkShooter());
+      shooterTimer=0;
+    }
+    shooters=shooters.filter(s=>{
+      s.x+=s.vx;s.y+=s.vy;
+      s.life-=.018;s.a=s.life;
+      if(s.life<=0)return false;
+      ctx.save();
+      ctx.globalAlpha=s.a;
+      const grd=ctx.createLinearGradient(s.x,s.y,s.x-s.vx*(s.len/s.vx*1.5||10),s.y-s.vy*(s.len/s.vy*1.5||10));
+      grd.addColorStop(0,`rgba(${s.col},${s.a})`);
+      grd.addColorStop(1,`rgba(${s.col},0)`);
+      ctx.strokeStyle=grd;
+      ctx.lineWidth=1.2;
+      ctx.beginPath();
+      const dx=s.vx/Math.hypot(s.vx,s.vy);
+      const dy=s.vy/Math.hypot(s.vx,s.vy);
+      ctx.moveTo(s.x,s.y);
+      ctx.lineTo(s.x-dx*s.len,s.y-dy*s.len);
+      ctx.stroke();
+      ctx.restore();
+      return true;
+    });
+
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+
+  resize();buildStars();buildNebula();draw();
+  window.addEventListener('resize',()=>{resize();buildStars();buildNebula();});
+}
+
+// Init stars on all canvas elements
+document.addEventListener('DOMContentLoaded',()=>{
+  ['starsCanvas','starsCanvas2','starsCanvas3'].forEach(initStars);
+  // Live invoice preview listeners
+  ['invHT','invTVA'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('input',updateInvPreview);
+  });
 });
 </script>
 </body>
