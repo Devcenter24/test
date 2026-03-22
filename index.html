@@ -1371,12 +1371,27 @@ let CU=null,isStaff=false,SVCS=[],ORDS=[],TKTS=[],selOType=null,dcToken=null;
 
 // ═══════ SUPABASE ═══════
 async function sb(path,method='GET',body=null){
+  const headers={
+    'apikey':SBK,
+    'Authorization':'Bearer '+SBK,
+    'Content-Type':'application/json',
+  };
+  if(method==='POST') headers['Prefer']='return=representation';
+  if(method==='DELETE') headers['Prefer']='return=minimal';
+  if(method==='PATCH') headers['Prefer']='return=minimal';
+
   const r=await fetch(SBU+'/rest/v1/'+path,{
     method,
-    headers:{'apikey':SBK,'Authorization':'Bearer '+SBK,'Content-Type':'application/json','Prefer':method==='POST'?'return=representation':''},
+    headers,
     body:body?JSON.stringify(body):null
   });
-  if(!r.ok)throw new Error(await r.text());
+  // 204/205 = success with no body (DELETE, PATCH)
+  if(r.status===204||r.status===205)return null;
+  if(!r.ok){
+    const errText=await r.text();
+    console.error('Supabase error',r.status,errText);
+    throw new Error(errText);
+  }
   try{return await r.json();}catch{return null;}
 }
 
@@ -1784,15 +1799,6 @@ async function submitTicket(){
     await fetchData();
   }catch(e){console.error(e);showToast('❌ Erreur','err');}
 }
-async function deleteMyTk(evt,id){
-  evt.stopPropagation();
-  if(!confirm('Supprimer définitivement ce ticket ?'))return;
-  try{
-    await sb('ticket_messages?ticket_id=eq.'+id,'DELETE');
-    await sb('tickets?id=eq.'+id,'DELETE');
-    showToast('🗑️ Ticket supprimé');await fetchData();
-  }catch{showToast('❌ Erreur','err');}
-}
 function clearTicket(){
   ['tkSub','tkMsg'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('tkSvc').value='';
@@ -1874,10 +1880,38 @@ async function closeTk(id){try{await sb('tickets?id=eq.'+id,'PATCH',{status:'clo
 async function deleteTk(id){
   if(!confirm('Supprimer définitivement ce ticket ?'))return;
   try{
-    await sb('ticket_messages?ticket_id=eq.'+id,'DELETE');
+    // Try to delete messages first — ignore error if table empty or doesn't cascade
+    try{ await sb('ticket_messages?ticket_id=eq.'+id,'DELETE'); }catch(e){ console.warn('messages delete:',e); }
+    // Delete the ticket itself
     await sb('tickets?id=eq.'+id,'DELETE');
     showToast('🗑️ Ticket supprimé');loadStkts();
-  }catch{showToast('❌ Erreur','err');}
+  }catch(e){
+    console.error('deleteTk error:',e);
+    // Parse Supabase error
+    let msg='Erreur de suppression';
+    try{const j=JSON.parse(e.message);msg=j.message||j.hint||msg;}catch{}
+    if(e.message.includes('42501')||e.message.includes('permission')||e.message.includes('policy')){
+      msg='Permission refusée — ajoutez la politique DELETE dans Supabase (voir console)';
+    }
+    showToast('❌ '+msg,'err');
+  }
+}
+async function deleteMyTk(evt,id){
+  evt.stopPropagation();
+  if(!confirm('Supprimer définitivement ce ticket ?'))return;
+  try{
+    try{ await sb('ticket_messages?ticket_id=eq.'+id,'DELETE'); }catch(e){ console.warn('messages delete:',e); }
+    await sb('tickets?id=eq.'+id,'DELETE');
+    showToast('🗑️ Ticket supprimé');await fetchData();
+  }catch(e){
+    console.error('deleteMyTk error:',e);
+    let msg='Erreur de suppression';
+    try{const j=JSON.parse(e.message);msg=j.message||j.hint||msg;}catch{}
+    if(e.message.includes('42501')||e.message.includes('permission')||e.message.includes('policy')){
+      msg='Permission refusée — politique DELETE manquante dans Supabase';
+    }
+    showToast('❌ '+msg,'err');
+  }
 }
 async function activOrd(id){
   try{
@@ -1893,7 +1927,15 @@ async function deleteOrd(id){
   try{
     await sb('orders?id=eq.'+id,'DELETE');
     showToast('🗑️ Commande supprimée');loadSords();
-  }catch{showToast('❌ Erreur','err');}
+  }catch(e){
+    console.error('deleteOrd:',e);
+    let msg='Erreur de suppression';
+    try{const j=JSON.parse(e.message);msg=j.message||j.hint||msg;}catch{}
+    if(e.message.includes('42501')||e.message.includes('permission')||e.message.includes('policy')){
+      msg='Permission refusée — politique DELETE manquante dans Supabase';
+    }
+    showToast('❌ '+msg,'err');
+  }
 }
 
 // Staff edit order
