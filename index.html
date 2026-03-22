@@ -370,6 +370,94 @@ textarea.fc{resize:vertical;min-height:88px;}
 .toast.err{border-color:var(--danger);color:#f87171;}
 @keyframes sIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 .divider{height:1px;background:rgba(255,255,255,.05);margin:20px 0;}
+
+/* ── DASHBOARD HOME v2 ── */
+.dash-home-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;}
+.dash-home-left{display:flex;align-items:center;gap:14px;}
+.dash-home-title{font-size:2rem;font-weight:800;letter-spacing:-1px;}
+.dash-home-sub{color:var(--muted);font-size:.8rem;margin-top:3px;}
+.stats-row-v2{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.sc-v2{background:#111118;border:1px solid #1e1e2e;border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:border-color .2s;}
+.sc-v2:hover{border-color:rgba(255,255,255,.1);}
+.sc-v2 .sc-ico{width:38px;height:38px;border-radius:9px;}
+.sc-v2 .sc-num{font-size:1.5rem;font-weight:800;line-height:1;}
+.sc-v2 .sc-lbl{color:var(--muted);font-size:.72rem;margin-top:2px;}
+.svc-grid-v2{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.svc-card-v2{background:#111118;border:1px solid #1e1e2e;border-radius:11px;padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;}
+.svc-card-v2:hover{border-color:rgba(255,255,255,.1);background:#151520;}
+.svc-card-v2 .sc-ico{width:34px;height:34px;border-radius:8px;flex-shrink:0;}
+.svc-card-v2 h4{font-weight:700;font-size:.82rem;margin-bottom:1px;}
+.svc-card-v2 p{color:var(--muted);font-size:.7rem;}
+.block-v2{background:#111118;border:1px solid #1e1e2e;border-radius:12px;overflow:hidden;margin-bottom:16px;}
+.block-v2-hdr{display:flex;align-items:center;gap:8px;padding:14px 18px;font-weight:700;font-size:.82rem;border-bottom:1px solid #1e1e2e;}
+.activity-row{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.03);}
+.activity-row:last-child{border-bottom:none;}
+
+/* ── STEPPER ORDER ── */
+.stepper{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px;}
+.step{display:flex;align-items:center;gap:8px;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;transition:all .3s;}
+.step-num.done{background:var(--accent);color:#fff;}
+.step-num.active{background:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(88,101,242,.25);}
+.step-num.todo{background:#1e1e2e;color:var(--muted);border:1px solid #2e2e42;}
+.step-lbl{font-size:.78rem;font-weight:600;color:var(--muted);transition:color .3s;}
+.step-lbl.active{color:var(--text);}
+.step-line{width:50px;height:1px;background:#2e2e42;margin:0 4px;}
+.step-line.done{background:var(--accent);}
+.order-service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+.osg-card{background:#111118;border:2px solid #1e1e2e;border-radius:14px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
+.osg-card:hover{border-color:rgba(88,101,242,.5);background:rgba(88,101,242,.04);}
+.osg-card.sel{border-color:var(--accent);background:rgba(88,101,242,.06);}
+.osg-ico-wrap{width:64px;height:64px;border-radius:16px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;}
+.osg-card h3{font-weight:800;font-size:.95rem;margin-bottom:6px;}
+.osg-card p{color:var(--muted);font-size:.76rem;line-height:1.5;margin-bottom:12px;}
+.osg-link{color:var(--accent);font-size:.76rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:4px;}
+.order-back{display:flex;align-items:center;gap:6px;color:var(--accent2);font-size:.8rem;font-weight:600;cursor:pointer;margin-bottom:20px;}
+.order-back:hover{color:var(--text);}
+/* FAQ accordion */
+.faq-list{display:flex;flex-direction:column;gap:8px;}
+.faq-item{background:#111118;border:1px solid #1e1e2e;border-radius:10px;overflow:hidden;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;font-size:.84rem;font-weight:600;transition:background .2s;user-select:none;}
+.faq-q:hover{background:#151520;}
+.faq-q svg{flex-shrink:0;transition:transform .25s;}
+.faq-q.open svg{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:.8rem;color:var(--muted);line-height:1.7;padding:0 18px;}
+.faq-a.open{max-height:200px;padding:0 18px 14px;}
+/* order plan step */
+.plan-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+.plan-card{background:#111118;border:2px solid #1e1e2e;border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-align:center;}
+.plan-card:hover,.plan-card.sel{border-color:var(--accent);background:rgba(88,101,242,.06);}
+.plan-card h4{font-weight:800;font-size:.9rem;margin-bottom:4px;}
+.plan-card .plan-price{font-size:1.2rem;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.plan-card p{color:var(--muted);font-size:.74rem;}
+
+/* ── TICKET CHAT ── */
+.ticket-chat{display:flex;flex-direction:column;height:calc(100vh - 200px);max-height:600px;}
+.tc-msgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:16px;background:#0c0c14;border-radius:10px 10px 0 0;border:1px solid #1e1e2e;border-bottom:none;}
+.tc-msgs::-webkit-scrollbar{width:4px;}
+.tc-msgs::-webkit-scrollbar-track{background:transparent;}
+.tc-msgs::-webkit-scrollbar-thumb{background:#2e2e42;border-radius:2px;}
+.msg-bubble{max-width:70%;padding:10px 14px;border-radius:12px;font-size:.8rem;line-height:1.6;}
+.msg-bubble.me{align-self:flex-end;background:rgba(88,101,242,.18);border:1px solid rgba(88,101,242,.25);}
+.msg-bubble.staff{align-self:flex-start;background:#1a1a28;border:1px solid #2a2a3c;}
+.msg-bubble.system{align-self:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:var(--muted);font-size:.72rem;max-width:100%;text-align:center;}
+.msg-meta{font-size:.65rem;color:var(--muted);margin-bottom:3px;}
+.tc-input-row{display:flex;gap:8px;padding:12px;background:#111118;border:1px solid #1e1e2e;border-radius:0 0 10px 10px;}
+.tc-input{flex:1;background:#0c0c14;border:1px solid #2a2a3c;border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Syne',sans-serif;font-size:.82rem;}
+.tc-input:focus{outline:none;border-color:rgba(88,101,242,.6);}
+.tc-send{background:var(--accent);border:none;width:38px;height:38px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
+.tc-send:hover{background:#4752c4;}
+.ticket-view{display:none;}
+.ticket-view.open{display:flex;flex-direction:column;}
+.tk-view-hdr{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.tk-view-hdr h3{font-weight:800;font-size:1rem;}
+
+/* ── EDIT MODAL ── */
+.edit-modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);z-index:2000;align-items:center;justify-content:center;}
+.edit-modal-ov.open{display:flex;}
+.edit-modal{background:#111118;border:1px solid #2a2a3c;border-radius:16px;padding:28px;width:420px;position:relative;animation:mIn .25s ease;}
+.edit-modal h3{font-weight:800;font-size:1rem;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.em-x{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;}
 </style>
 </head>
 <body>
@@ -752,73 +840,184 @@ textarea.fc{resize:vertical;min-height:88px;}
 
       <!-- HOME -->
       <div class="dp active" id="dp-home">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-          <div><div style="font-weight:800;font-size:1.15rem;">Tableau de bord</div><div id="welcomeMsg" style="color:var(--muted);font-size:.78rem;"></div></div>
+        <div class="dash-home-top">
+          <div class="dash-home-left">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#3b82f6"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+            <div><div id="welcomeMsg" style="color:var(--muted);font-size:.82rem;"></div></div>
+          </div>
+          <div class="dash-home-title">Tableau de bord</div>
         </div>
-        <div class="stats-row">
-          <div class="sc"><div class="sc-ico i-blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="sc-info"><h3 id="stActive">0</h3><p>Services actifs</p></div></div>
-          <div class="sc"><div class="sc-ico i-gold"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M13.5 2a2 2 0 0 0-3 0L8 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-4l-2.5-3z"/></svg></div><div class="sc-info"><h3 id="stBal">0€</h3><p>Solde</p></div></div>
-          <div class="sc"><div class="sc-ico i-green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="sc-info"><h3 id="stOrds">0</h3><p>Commandes</p></div></div>
+        <div class="stats-row-v2">
+          <div class="sc-v2">
+            <div class="sc-ico i-blue" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <div><div class="sc-num" id="stActive">0</div><div class="sc-lbl">Services actifs</div></div>
+          </div>
+          <div class="sc-v2">
+            <div class="sc-ico i-gold" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="sc-num" id="stBal">0.00€</div><div class="sc-lbl">Solde</div></div>
+          </div>
+          <div class="sc-v2">
+            <div class="sc-ico i-green" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><div class="sc-num" id="stOrds">0</div><div class="sc-lbl">Commandes</div></div>
+          </div>
         </div>
         <div style="font-weight:800;font-size:.88rem;margin-bottom:11px;">Mes services</div>
-        <div class="svc-btns">
-          <div class="svc-btn" onclick="goP('services',null)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <h4>Bots Discord</h4><p>Bots Discord & Telegram</p>
+        <div class="svc-grid-v2">
+          <div class="svc-card-v2" onclick="goP('services',null)">
+            <div class="sc-ico i-blue" style="display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <div><h4>Tous les services</h4><p>Voir tous vos serveurs</p></div>
           </div>
-          <div class="svc-btn" onclick="goP('services',null)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <h4>Serveurs Discord</h4><p>Gestion de serveurs</p>
+          <div class="svc-card-v2" onclick="goP('services',null)">
+            <div class="sc-ico" style="background:rgba(88,101,242,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;width:34px;height:34px;border-radius:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <div><h4>Bots Discord</h4><p>Bots Discord & Telegram</p></div>
           </div>
-          <div class="svc-btn" onclick="goP('services',null)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <h4>Sites Web</h4><p>Hébergement web</p>
+          <div class="svc-card-v2" onclick="goP('services',null)">
+            <div class="sc-ico" style="background:rgba(0,212,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;width:34px;height:34px;border-radius:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div><h4>Sites Web</h4><p>Hébergement web</p></div>
           </div>
         </div>
-        <div class="sec-h"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Actions rapides</div>
-        <div class="list-block">
-          <div class="list-row" onclick="goP('services',null)" style="cursor:pointer;">
+        <div class="block-v2">
+          <div class="block-v2-hdr">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Actions rapides
+          </div>
+          <div class="activity-row" onclick="goP('services',null)" style="cursor:pointer;">
             <div class="lr-left">
               <div class="lr-ico i-bot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
               <div><div class="lr-name">Mes serveurs</div><div class="lr-sub">Voir tous vos services</div></div>
             </div>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
+        </div>
+        <div class="block-v2">
+          <div class="block-v2-hdr">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Activités récentes
+          </div>
+          <div id="recentActivity"><div class="activity-row" style="color:var(--muted);font-size:.78rem;justify-content:center;">Aucune activité récente</div></div>
         </div>
       </div>
 
       <!-- COMMANDER -->
       <div class="dp" id="dp-order">
-        <div style="margin-bottom:22px;"><div style="font-size:1.3rem;font-weight:800;margin-bottom:3px;">Commander un service</div><div style="color:var(--muted);font-size:.8rem;">Choisissez votre type de service</div></div>
-        <div class="order-pick" id="orderPick">
-          <div class="op-card" onclick="selOT('discord_bot',this)">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <h3>Bot Discord</h3><p>Hébergez votre bot 24/7</p>
+        <!-- Stepper -->
+        <div class="stepper">
+          <div class="step">
+            <div class="step-num active" id="step1n">1</div>
+            <span class="step-lbl active" id="step1l">Service</span>
           </div>
-          <div class="op-card" onclick="selOT('discord_server',this)">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <h3>Serveur Discord</h3><p>Configuration de votre serveur</p>
+          <div class="step-line" id="line12"></div>
+          <div class="step">
+            <div class="step-num todo" id="step2n">2</div>
+            <span class="step-lbl" id="step2l">Plan</span>
           </div>
-          <div class="op-card" onclick="selOT('website',this)">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <h3>Site Web</h3><p>Déployez votre site</p>
+          <div class="step-line" id="line23"></div>
+          <div class="step">
+            <div class="step-num todo" id="step3n">3</div>
+            <span class="step-lbl" id="step3l">Configuration</span>
           </div>
         </div>
-        <div class="o-form" id="orderForm" style="display:none;">
-          <h3 id="oTitle">Commander</h3>
-          <div class="fg"><label>Nom *</label><input type="text" class="fc" id="oName" placeholder="Ex: MonBot..."></div>
-          <div class="fg"><label>Description</label><textarea class="fc" id="oDesc" placeholder="Décrivez votre projet..."></textarea></div>
-          <div class="fg"><label>Plan</label>
-            <select class="fc" id="oPlan">
-              <option value="free">Starter — Gratuit</option>
-              <option value="pro">Pro — 1 Boost Discord</option>
-              <option value="enterprise">Enterprise — 2 Boosts Discord</option>
-            </select>
+
+        <!-- Step 1 : choisir service -->
+        <div id="ostep1">
+          <div style="font-weight:700;font-size:.86rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            Choisissez votre service
           </div>
-          <div style="display:flex;align-items:center;margin-top:4px;">
-            <button class="btn-s" onclick="submitOrder()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Commander</button>
-            <button class="btn-can" onclick="cancelOrder()">Annuler</button>
+          <div class="order-service-grid">
+            <div class="osg-card" onclick="selOT('discord_bot',this)">
+              <div class="osg-ico-wrap" style="background:rgba(88,101,242,.15);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <h3>Bots Discord</h3>
+              <p>Hébergez vos bots Discord, Telegram et plus</p>
+              <div class="osg-link">Voir les offres <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+            </div>
+            <div class="osg-card" onclick="selOT('discord_server',this)">
+              <div class="osg-ico-wrap" style="background:rgba(139,92,246,.15);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Serveurs Discord</h3>
+              <p>Configuration et gestion de vos serveurs</p>
+              <div class="osg-link">Voir les offres <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+            </div>
+            <div class="osg-card" onclick="selOT('website',this)">
+              <div class="osg-ico-wrap" style="background:rgba(0,212,255,.1);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>Sites Web</h3>
+              <p>Déployez vos sites et applications web</p>
+              <div class="osg-link">Voir les offres <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+            </div>
+          </div>
+          <!-- FAQ -->
+          <div style="font-weight:800;font-size:.9rem;margin-bottom:14px;">Questions fréquentes</div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Puis-je changer de plan après la commande ?
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="faq-a">Oui, vous pouvez upgrader ou downgrader votre plan à tout moment depuis la section "Commandes" de votre tableau de bord.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Comment fonctionne la facturation ?
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="faq-a">Les plans Pro et Enterprise sont facturés en Boost Discord. Le plan Starter est entièrement gratuit et sans limite de durée.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Les plans gratuits ont-ils des limitations ?
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="faq-a">Le plan gratuit permet 1 bot Discord, 1 serveur et 1 site web. Les ressources sont partagées mais suffisantes pour des projets personnels.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 : choisir plan -->
+        <div id="ostep2" style="display:none;">
+          <div class="order-back" onclick="goStep(1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Tableau de bord
+          </div>
+          <div style="font-weight:700;font-size:.86rem;margin-bottom:16px;">Choisissez votre plan</div>
+          <div class="plan-cards">
+            <div class="plan-card" onclick="selPlan('free',this)">
+              <h4>Starter</h4>
+              <div class="plan-price">0€ <span style="font-size:.75rem;color:var(--muted);font-weight:500;">/mois</span></div>
+              <p>1 service · Support communauté</p>
+            </div>
+            <div class="plan-card sel" onclick="selPlan('pro',this)">
+              <h4>Pro</h4>
+              <div class="plan-price"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent)"><path d="M13.5 2a2 2 0 0 0-3 0L8 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-4l-2.5-3z"/></svg>1 Boost</div>
+              <p>3 bots · 3 serveurs · 2 sites</p>
+            </div>
+            <div class="plan-card" onclick="selPlan('enterprise',this)">
+              <h4>Enterprise</h4>
+              <div class="plan-price"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--purple)"><path d="M13.5 2a2 2 0 0 0-3 0L8 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-4l-2.5-3z"/></svg>2 Boosts</div>
+              <p>Services illimités · SLA garanti</p>
+            </div>
+          </div>
+          <button class="btn-s" onclick="goStep(3)">Continuer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+
+        <!-- Step 3 : configuration -->
+        <div id="ostep3" style="display:none;">
+          <div class="order-back" onclick="goStep(2)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Retour
+          </div>
+          <div class="o-form">
+            <h3 id="oTitle" style="margin-bottom:18px;">Configuration</h3>
+            <div class="fg"><label>Nom du service *</label><input type="text" class="fc" id="oName" placeholder="Ex: MonBot, MonSite..."></div>
+            <div class="fg"><label>Description</label><textarea class="fc" id="oDesc" placeholder="Décrivez votre projet..."></textarea></div>
+            <div style="display:flex;align-items:center;margin-top:4px;">
+              <button class="btn-s" onclick="submitOrder()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Commander</button>
+              <button class="btn-can" onclick="cancelOrder()">Annuler</button>
+            </div>
           </div>
         </div>
       </div>
@@ -843,8 +1042,8 @@ textarea.fc{resize:vertical;min-height:88px;}
       <div class="dp" id="dp-orders">
         <div style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">Mes Commandes</div>
         <div class="list-block">
-          <table class="tbl"><thead><tr><th>Service</th><th>Type</th><th>Plan</th><th>Statut</th><th>Date</th></tr></thead>
-          <tbody id="ordsTbody"><tr><td colspan="5" style="text-align:center;padding:30px;color:var(--muted);">Aucune commande</td></tr></tbody>
+          <table class="tbl"><thead><tr><th>Service</th><th>Type</th><th>Plan</th><th>Statut</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody id="ordsTbody"><tr><td colspan="6" style="text-align:center;padding:30px;color:var(--muted);">Aucune commande</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -863,10 +1062,36 @@ textarea.fc{resize:vertical;min-height:88px;}
           </div>
         </div>
 
-        <!-- Mes tickets -->
+        <!-- Mes tickets + chat -->
         <div class="sup-panel active" id="sp-tickets">
-          <div class="list-block" id="myTicketsList">
-            <div class="empty" style="padding:30px"><h3>Aucun ticket</h3><p>Vous n'avez pas encore créé de ticket</p></div>
+          <div id="ticketListView">
+            <div class="list-block" id="myTicketsList">
+              <div class="empty" style="padding:30px"><h3>Aucun ticket</h3><p>Vous n'avez pas encore créé de ticket</p></div>
+            </div>
+          </div>
+          <div class="ticket-view" id="ticketChatView">
+            <div class="tk-view-hdr">
+              <div class="order-back" onclick="closeTicketView()" style="margin-bottom:0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                Retour
+              </div>
+              <div>
+                <h3 id="tkChatTitle">—</h3>
+                <div style="display:flex;align-items:center;gap:8px;margin-top:3px;">
+                  <span class="pill p-green" id="tkChatStatus">Ouvert</span>
+                  <span style="color:var(--muted);font-size:.7rem;" id="tkChatCat">—</span>
+                </div>
+              </div>
+            </div>
+            <div class="ticket-chat">
+              <div class="tc-msgs" id="tkMsgList"></div>
+              <div class="tc-input-row">
+                <input type="text" class="tc-input" id="tkChatInput" placeholder="Écrivez votre message..." onkeydown="if(event.key==='Enter')sendTkMsg()">
+                <button class="tc-send" onclick="sendTkMsg()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -946,6 +1171,42 @@ textarea.fc{resize:vertical;min-height:88px;}
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Edit Order Modal -->
+<div class="edit-modal-ov" id="editModal" onclick="if(event.target===this)closeEditModal()">
+  <div class="edit-modal">
+    <button class="em-x" onclick="closeEditModal()">✕</button>
+    <h3>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Modifier la commande
+    </h3>
+    <input type="hidden" id="editOrderId">
+    <div class="fg"><label>Nom du service</label><input type="text" class="fc" id="editName" placeholder="Nom du service"></div>
+    <div class="fg"><label>Statut</label>
+      <select class="fc" id="editStatus">
+        <option value="pending">En attente</option>
+        <option value="active">Actif</option>
+        <option value="cancelled">Annulé</option>
+        <option value="completed">Terminé</option>
+      </select>
+    </div>
+    <div class="fg"><label>Plan</label>
+      <select class="fc" id="editPlan">
+        <option value="0">Gratuit (Starter)</option>
+        <option value="1">1 Boost (Pro)</option>
+        <option value="2">2 Boosts (Enterprise)</option>
+      </select>
+    </div>
+    <div class="fg"><label>Notes</label><textarea class="fc" id="editNotes" placeholder="Notes ou description..."></textarea></div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+      <button class="btn-s" onclick="saveEditOrder()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Sauvegarder
+      </button>
+      <button class="btn-can" onclick="closeEditModal()">Annuler</button>
     </div>
   </div>
 </div>
@@ -1076,7 +1337,7 @@ async function initDash(){
   ['sbAv','topAv','accAv'].forEach(id=>{const el=document.getElementById(id);if(el){el.src=av;}});
   document.getElementById('sbName').textContent=CU.username||'User';
   document.getElementById('sbTag').textContent=CU.discriminator&&CU.discriminator!=='0'?'#'+CU.discriminator:'';
-  document.getElementById('welcomeMsg').textContent='Bienvenue, '+(CU.username||'User')+' !';
+  document.getElementById('welcomeMsg').textContent='Bienvenue, '+(CU.username||'User');
   document.getElementById('accName').textContent=CU.username||'—';
   document.getElementById('accSub').textContent=CU.email||'Pas d\'email';
   document.getElementById('accUser').textContent=CU.username||'—';
@@ -1101,7 +1362,7 @@ async function fetchData(){
     ORDS=await sb('orders?user_id=eq.'+CU.id+'&order=created_at.desc&select=*')||[];
     TKTS=await sb('tickets?user_id=eq.'+CU.id+'&order=created_at.desc&select=*')||[];
   }catch{SVCS=[];ORDS=[];TKTS=[];}
-  updateStats();renderSvcs();renderOrds();renderMyTickets();renderSupOrds();fillTkSvcs();
+  updateStats();renderSvcs();renderOrds();renderMyTickets();renderSupOrds();fillTkSvcs();renderRecentActivity();
 }
 
 function updateStats(){
@@ -1140,17 +1401,30 @@ function renderSvcs(){
 
 function renderOrds(){
   const tb=document.getElementById('ordsTbody');
-  if(!ORDS.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;padding:28px;color:var(--muted);">Aucune commande</td></tr>';return;}
-  tb.innerHTML=ORDS.map(o=>`<tr><td style="font-weight:600;">${o.description||'—'}</td><td style="color:var(--muted);">${TLB[o.service_type]||o.service_type}</td><td>${o.amount===0?'Gratuit':o.amount<=1?'1 Boost':'2 Boosts'}</td><td><span class="pill ${o.status==='active'?'p-green':o.status==='pending'?'p-yellow':'p-red'}">${o.status}</span></td><td style="color:var(--muted);font-size:.72rem;">${new Date(o.created_at).toLocaleDateString('fr-FR')}</td></tr>`).join('');
+  if(!ORDS.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--muted);">Aucune commande</td></tr>';return;}
+  tb.innerHTML=ORDS.map(o=>`<tr>
+    <td style="font-weight:600;">${o.description||'—'}</td>
+    <td style="color:var(--muted);">${TLB[o.service_type]||o.service_type}</td>
+    <td>${o.amount===0?'Gratuit':o.amount<=1?'1 Boost':'2 Boosts'}</td>
+    <td><span class="pill ${o.status==='active'?'p-green':o.status==='pending'?'p-yellow':'p-red'}">${o.status}</span></td>
+    <td style="color:var(--muted);font-size:.72rem;">${new Date(o.created_at).toLocaleDateString('fr-FR')}</td>
+    <td><button class="btn-sm bsg" style="display:flex;align-items:center;gap:4px;" onclick="openEditModal('${o.id}')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Modifier
+    </button></td>
+  </tr>`).join('');
 }
 
 function renderMyTickets(){
+  const lv=document.getElementById('ticketListView');
+  const cv=document.getElementById('ticketChatView');
+  lv.style.display='block';cv.classList.remove('open');
   const c=document.getElementById('myTicketsList');
   if(!TKTS.length){c.innerHTML='<div class="empty" style="padding:28px"><h3>Aucun ticket</h3><p>Vous n\'avez pas encore créé de ticket de support</p></div>';return;}
   const pclass={open:'p-green',in_progress:'p-blue',resolved:'p-purple',closed:'p-red'};
   const plabel={open:'Ouvert',in_progress:'En cours',resolved:'Résolu',closed:'Fermé'};
   c.innerHTML=TKTS.map(t=>`
-    <div class="list-row">
+    <div class="list-row" onclick="openTicketChat('${t.id}')" style="cursor:pointer;">
       <div class="lr-left">
         <div class="lr-ico i-bot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <div>
@@ -1158,9 +1432,127 @@ function renderMyTickets(){
           <div class="lr-sub">${t.category} · ${t.priority} · ${new Date(t.created_at).toLocaleDateString('fr-FR')}</div>
         </div>
       </div>
-      <span class="pill ${pclass[t.status]||'p-yellow'}">${plabel[t.status]||t.status}</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill ${pclass[t.status]||'p-yellow'}">${plabel[t.status]||t.status}</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
     </div>
   `).join('');
+}
+
+let activeTkId=null;
+async function openTicketChat(tkId){
+  activeTkId=tkId;
+  const tk=TKTS.find(t=>t.id===tkId);
+  if(!tk)return;
+  document.getElementById('ticketListView').style.display='none';
+  const cv=document.getElementById('ticketChatView');
+  cv.classList.add('open');
+  document.getElementById('tkChatTitle').textContent=tk.subject;
+  const pclass={open:'p-green',in_progress:'p-blue',resolved:'p-purple',closed:'p-red'};
+  const plabel={open:'Ouvert',in_progress:'En cours',resolved:'Résolu',closed:'Fermé'};
+  const stEl=document.getElementById('tkChatStatus');
+  stEl.className='pill '+(pclass[tk.status]||'p-yellow');
+  stEl.textContent=plabel[tk.status]||tk.status;
+  document.getElementById('tkChatCat').textContent=tk.category+' · '+tk.priority;
+  await loadTkMessages(tk);
+}
+
+async function loadTkMessages(tk){
+  const ml=document.getElementById('tkMsgList');
+  ml.innerHTML='';
+  // System message (ticket creation)
+  const sys=document.createElement('div');
+  sys.className='msg-bubble system';
+  sys.textContent='Ticket créé le '+new Date(tk.created_at).toLocaleString('fr-FR');
+  ml.appendChild(sys);
+  // First message (ticket description)
+  const fm=document.createElement('div');
+  fm.className='msg-bubble me';
+  fm.innerHTML=`<div class="msg-meta">${CU.username} · ${new Date(tk.created_at).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</div>${tk.message}`;
+  ml.appendChild(fm);
+  // Load replies from DB
+  try{
+    const msgs=await sb('ticket_messages?ticket_id=eq.'+tk.id+'&order=created_at.asc&select=*')||[];
+    msgs.forEach(m=>{
+      const b=document.createElement('div');
+      b.className='msg-bubble '+(m.is_staff?'staff':'me');
+      b.innerHTML=`<div class="msg-meta">${m.is_staff?'Staff':'Vous'} · ${new Date(m.created_at).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</div>${m.content}`;
+      ml.appendChild(b);
+    });
+  }catch{}
+  ml.scrollTop=ml.scrollHeight;
+}
+
+async function sendTkMsg(){
+  const inp=document.getElementById('tkChatInput');
+  const txt=inp.value.trim();
+  if(!txt||!activeTkId)return;
+  inp.value='';
+  const ml=document.getElementById('tkMsgList');
+  const b=document.createElement('div');
+  b.className='msg-bubble me';
+  b.innerHTML=`<div class="msg-meta">${CU.username} · maintenant</div>${txt}`;
+  ml.appendChild(b);
+  ml.scrollTop=ml.scrollHeight;
+  try{
+    await sb('ticket_messages','POST',{ticket_id:activeTkId,user_id:CU.id,is_staff:false,content:txt});
+  }catch(e){console.error(e);}
+}
+
+function closeTicketView(){
+  activeTkId=null;
+  document.getElementById('ticketChatView').classList.remove('open');
+  document.getElementById('ticketListView').style.display='block';
+}
+
+// ═══════ EDIT ORDER ═══════
+function openEditModal(ordId){
+  const o=ORDS.find(x=>x.id===ordId);if(!o)return;
+  document.getElementById('editOrderId').value=ordId;
+  document.getElementById('editName').value=o.description||'';
+  document.getElementById('editStatus').value=o.status||'pending';
+  document.getElementById('editPlan').value=String(o.amount||0);
+  document.getElementById('editNotes').value=o.notes||'';
+  document.getElementById('editModal').classList.add('open');
+}
+function closeEditModal(){document.getElementById('editModal').classList.remove('open');}
+async function saveEditOrder(){
+  const id=document.getElementById('editOrderId').value;
+  const name=document.getElementById('editName').value.trim();
+  const status=document.getElementById('editStatus').value;
+  const amount=parseInt(document.getElementById('editPlan').value);
+  const notes=document.getElementById('editNotes').value;
+  if(!name)return showToast('❌ Entrez un nom','err');
+  try{
+    await sb('orders?id=eq.'+id,'PATCH',{description:name,status,amount,notes});
+    showToast('✅ Commande modifiée !');
+    closeEditModal();await fetchData();
+  }catch(e){console.error(e);showToast('❌ Erreur','err');}
+}
+
+// ═══════ STEPPER ═══════
+let currentStep=1,selPlanVal='free';
+function goStep(n){
+  currentStep=n;
+  [1,2,3].forEach(i=>{
+    const num=document.getElementById('step'+i+'n');
+    const lbl=document.getElementById('step'+i+'l');
+    num.className='step-num '+(i<n?'done':i===n?'active':'todo');
+    lbl.className='step-lbl'+(i===n?' active':'');
+  });
+  if(n>=2)document.getElementById('line12').className='step-line done';
+  else document.getElementById('line12').className='step-line';
+  if(n>=3)document.getElementById('line23').className='step-line done';
+  else document.getElementById('line23').className='step-line';
+  document.getElementById('ostep1').style.display=n===1?'':'none';
+  document.getElementById('ostep2').style.display=n===2?'':'none';
+  document.getElementById('ostep3').style.display=n===3?'':'none';
+}
+
+function toggleFaq(el){
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
 }
 
 function renderSupOrds(){
@@ -1179,15 +1571,20 @@ function fillTkSvcs(){
 // ═══════ ORDER ═══════
 function selOT(t,el){
   selOType=t;
-  document.querySelectorAll('.op-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('.osg-card').forEach(c=>c.classList.remove('sel'));
   if(el)el.classList.add('sel');
-  document.getElementById('oTitle').textContent='Commander · '+TLB[t];
-  document.getElementById('orderForm').style.display='block';
+  const titles={discord_bot:'Bot Discord',discord_server:'Serveur Discord',website:'Site Web'};
+  document.getElementById('oTitle').textContent='Configuration · '+titles[t];
+  goStep(2);
+}
+function selPlan(p,el){
+  selPlanVal=p;
+  document.querySelectorAll('.plan-card').forEach(c=>c.classList.remove('sel'));
+  if(el)el.classList.add('sel');
 }
 function cancelOrder(){
-  selOType=null;
-  document.getElementById('orderForm').style.display='none';
-  document.querySelectorAll('.op-card').forEach(c=>c.classList.remove('sel'));
+  selOType=null;selPlanVal='free';
+  goStep(1);
   document.getElementById('oName').value='';
   document.getElementById('oDesc').value='';
 }
@@ -1195,14 +1592,36 @@ async function submitOrder(){
   if(!selOType)return showToast('❌ Sélectionnez un type','err');
   const name=document.getElementById('oName').value.trim();
   if(!name)return showToast('❌ Entrez un nom','err');
-  const plan=document.getElementById('oPlan').value;
+  const amounts={free:0,pro:1,enterprise:2};
   try{
-    const svc=await sb('services','POST',{user_id:CU.id,service_type:selOType,name,status:'pending',is_premium:plan!=='free'});
+    const svc=await sb('services','POST',{user_id:CU.id,service_type:selOType,name,status:'pending',is_premium:selPlanVal!=='free'});
     const s=Array.isArray(svc)?svc[0]:svc;
-    await sb('orders','POST',{user_id:CU.id,service_id:s?.id||null,service_type:selOType,amount:plan==='free'?0:plan==='pro'?1:2,status:'pending',description:name});
+    await sb('orders','POST',{user_id:CU.id,service_id:s?.id||null,service_type:selOType,amount:amounts[selPlanVal]||0,status:'pending',description:name});
     showToast('✅ Commande envoyée ! En attente de validation.');
     cancelOrder();await fetchData();
+    goP('orders',null);
   }catch(e){console.error(e);showToast('❌ Erreur','err');}
+}
+
+function renderRecentActivity(){
+  const c=document.getElementById('recentActivity');
+  const recent=[...ORDS,...TKTS].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,4);
+  if(!recent.length){c.innerHTML='<div class="activity-row" style="color:var(--muted);font-size:.78rem;justify-content:center;">Aucune activité récente</div>';return;}
+  c.innerHTML=recent.map(item=>{
+    const isOrder='service_type' in item;
+    return`<div class="activity-row">
+      <div class="lr-left">
+        <div class="lr-ico ${isOrder?'i-bot':'i-srv'}" style="width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;">
+          ${isOrder?'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'}
+        </div>
+        <div>
+          <div style="font-size:.8rem;font-weight:600;">${isOrder?('Commande · '+(item.description||TLB[item.service_type]||'—')):'Ticket · '+(item.subject||'—')}</div>
+          <div style="font-size:.7rem;color:var(--muted);">${new Date(item.created_at).toLocaleDateString('fr-FR')}</div>
+        </div>
+      </div>
+      <span class="pill ${item.status==='active'||item.status==='open'?'p-green':item.status==='pending'?'p-yellow':'p-red'}">${item.status}</span>
+    </div>`;
+  }).join('');
 }
 
 // ═══════ TICKET ═══════
